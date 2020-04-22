@@ -5,7 +5,6 @@ namespace rps
 {
     class Program
     {
-        Player boo = new Player();
         static void Main(string[] args)
         {
             Game rps = new Game();
@@ -95,6 +94,7 @@ namespace rps
             if (player1.hand == player2.hand)
             {
                 ties++;
+                Console.WriteLine($"Tied!");
             }
             else if ((player1.hand == "rock" && player2.hand == "scissors") || (player1.hand == "scissors" && player2.hand == "paper") || (player1.hand == "paper" && player2.hand == "rock"))
             {
