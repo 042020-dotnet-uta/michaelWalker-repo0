@@ -81,6 +81,8 @@ namespace rps
         {
             // create an array of strings that will hold the values of "Rock", "Paper", "Scissors" to compare
             // and decide winner
+
+            // code modified from https://www.tutorialspoint.com/how-to-select-a-random-element-from-a-chash-list
             var random = new Random();
             var list = new List<string> { "rock", "paper", "scissors" };
             int index = random.Next(list.Count);
