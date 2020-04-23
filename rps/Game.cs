@@ -6,20 +6,39 @@ namespace rps
     class Game
     {
         //Instantiate players
-        Player player1 = new Player();
-        Player player2 = new Player();
+        private Player player1;
+        private Player player2;
 
         //create variable to count number of rounds
-        int rounds;
-        List<Round> Rounds { get; set; }
-        int ties;
+        private int rounds;
+        private List<Round> Rounds { get; set; }
+        private int ties;
+
+        // Dictionary keys for winner and loser
+        enum PlayerResults
+        {
+            Winner,
+            Loser
+        }
+        // Variable to store the results of who and and who lost for the current round
+        Dictionary<PlayerResults, Player> currentResults;
+
 
         public Game()
         {
+            // Initialize palyers
             player1 = new Player();
             player2 = new Player();
-            
-            
+
+            // initialize Rounds records
+            Rounds = new List<Round>();
+
+            // Register dictionary with keys for winner and loser
+            // will add Player values to pair with keys once a round has ended
+            currentResults = new Dictionary<PlayerResults, Player>();
+            currentResults.Add(PlayerResults.Winner, null);
+            currentResults.Add(PlayerResults.Loser, null);
+
             //assign players with scores of 0 and start at round 1
             rounds = 1;
             ties = 0;
@@ -29,14 +48,14 @@ namespace rps
         {
             // ask for input of player1 and player 2's  name and store it their respective property
             Console.WriteLine("Enter first player name:");
-            player1.playerName = Console.ReadLine();
+            player1.name = Console.ReadLine();
 
             Console.WriteLine("Enter second player name:");
-            player2.playerName = Console.ReadLine();
+            player2.name = Console.ReadLine();
 
 
-            Console.WriteLine($"Player1's name is:  {player1.playerName}");
-            Console.WriteLine($"Player2's name is:  {player2.playerName}");
+            Console.WriteLine($"Player1's name is:  {player1.name}");
+            Console.WriteLine($"Player2's name is:  {player2.name}");
 
 
             // start while loop that will keep running until either player1 or player2's score value is => 2
@@ -46,29 +65,46 @@ namespace rps
                 player1.hand = ChooseHand();
                 player2.hand = ChooseHand();
 
-                // print out result of the players, which hand they drew, which player won or state that there's a tie and what the
-                // current round is
-                Console.WriteLine($"Starting Round {rounds}");
-                Console.WriteLine($"Player {player1.playerName} choose  {player1.hand}");
-                Console.WriteLine($"Player {player2.playerName} choose  {player2.hand}");
-
                 // compare
                 compare();
 
+                // Record the data of the current round
+                Round currentRound = new Round();
+                currentRound.roundIndex = rounds;
+                // If there is no winner, mark the round as a tie
+                if (currentResults[0] == null)
+                {
+                    currentRound.isTie = true;
+                    currentRound.tieBreaker1 = player1;
+                    currentRound.tieBreaker2 = player2;
+                }
+                else
+                {
+                    // Record the outcome to the currentRound
+                    currentRound.winner = currentResults[PlayerResults.Winner];
+                    currentRound.loser = currentResults[PlayerResults.Loser];
+                }
+
+                Rounds.Add(currentRound);
+
                 rounds++;
+            }
+
+            // Print out the results of each round
+            foreach (Round round in Rounds)
+            {
+                round.printResults();
             }
 
             // finally, print the winner, their W-L ratio and their total amount of ties
             if (player1.score > player2.score)
             {
-                Console.WriteLine($"{player1.playerName} wins {player1.score}-{player2.score} with {ties} ties");
+                Console.WriteLine($"{player1.name} wins {player1.score}-{player2.score} with {ties} ties");
             }
             else
             {
-                Console.WriteLine($"{player2.playerName} wins {player2.score}-{player1.score} with {ties} ties");
+                Console.WriteLine($"{player2.name} wins {player2.score}-{player1.score} with {ties} ties");
             }
-
-
         }
 
         // Returns a random hand
@@ -87,19 +123,35 @@ namespace rps
         // compare player hands and deterine winner or tie
         public void compare()
         {
+            // If both hands are the same, results is a tie
             if (player1.hand == player2.hand)
             {
                 ties++;
+
+                // THere are no winners
+                currentResults[PlayerResults.Winner] = null;
+                currentResults[PlayerResults.Loser] = null;
+
             }
+            // Catch every case where player 1 would win
+            // if player 1 does not win, safe to assume player2 is the winner and is given the point
             else if ((player1.hand == "rock" && player2.hand == "scissors") || (player1.hand == "scissors" && player2.hand == "paper") || (player1.hand == "paper" && player2.hand == "rock"))
             {
+                // Score for 1
                 player1.score++;
-                Console.WriteLine($"Player {player1.playerName} wins.");
+
+                // Record who and and lost
+                currentResults[PlayerResults.Winner] = player1;
+                currentResults[PlayerResults.Loser] = player2;
             }
             else
             {
+                // Score for 2
                 player2.score++;
-                Console.WriteLine($"Player {player2.playerName} wins.");
+
+                // Record who and and lost
+                currentResults[PlayerResults.Winner] = player2;
+                currentResults[PlayerResults.Loser] = player1;
             }
         }
     }
