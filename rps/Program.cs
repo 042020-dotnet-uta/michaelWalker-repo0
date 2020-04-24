@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 namespace rps
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        Player boo = new Player();
-        static void Main(string[] args)
-        {
-            Game rps = new Game();
-            rps.StartGame();
-        }
+      Game rps = new Game();
+      rps.StartGame();
     }
-    
+  }
+
 }
