@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using rps.Models;
 
 namespace rps
 {
@@ -12,5 +13,5 @@ namespace rps
             rps.StartGame();
         }
     }
-    
+
 }

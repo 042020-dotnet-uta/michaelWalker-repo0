@@ -49,6 +49,7 @@ namespace rps
         }
     }
     
+    
     class Player
     {
         // define properties for player
