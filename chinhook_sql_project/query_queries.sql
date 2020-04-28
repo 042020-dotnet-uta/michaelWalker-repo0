@@ -2,15 +2,15 @@
 -- 1. List all customers (full names, customer ID, and country) who are not in the US
 SELECT *
 FROM Customer
-WHERE Country != "USA";
+WHERE Country != 'USA';
 -- 2. List all customers from brazil
 SELECT *
 FROM Customer
-WHERE COUNTRY = "Brazil";
+WHERE COUNTRY = 'Brazil';
 -- 3. List all sales agents
 SELECT *
 FROM Employee
-WHERE Title = "Sales Support Agent";
+WHERE Title = 'Sales Support Agent';
 -- 4. Show a list of all countries in billing addresses on invoices.
 SELECT BillingCountry
 FROM Invoice
