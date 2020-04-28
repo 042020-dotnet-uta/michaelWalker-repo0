@@ -1,0 +1,12 @@
+-- basic exercises in groups of 3 (Chinook database)
+-- 1. List all customers (full names, customer ID, and country) who are not in the US
+SELECT * FROM Customers WHERE Country != "USA"; 
+-- 2. List all customers from brazil
+SELECT * FROM Customers WHERE COUNTRY == "Brazil";
+-- 3. List all sales agents
+SELECT * FROM huh;
+-- 4. Show a list of all countries in billing addresses on invoices.
+-- 5. How many invoices were there in 2009, and what was the sales total for that year?
+-- 6. How many line items were there for invoice #37?
+-- 7. How many invoices per country?
+-- 8. Show total sales per country, ordered by highest sales first.
