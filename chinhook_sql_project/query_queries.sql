@@ -1,11 +1,11 @@
 -- basic exercises in groups of 3 (Chinook database)
 -- 1. List all customers (full names, customer ID, and country) who are not in the US
 SELECT *
-FROM Customers
+FROM Customer
 WHERE Country != "USA";
 -- 2. List all customers from brazil
 SELECT *
-FROM Customers
+FROM Customer
 WHERE COUNTRY = "Brazil";
 -- 3. List all sales agents
 SELECT *
