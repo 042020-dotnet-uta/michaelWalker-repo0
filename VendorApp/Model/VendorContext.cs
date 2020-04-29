@@ -17,6 +17,7 @@ namespace VendorApp.Model
 
         public VendorContext(DbContextOptions<VendorContext> opts) : base(opts) { }
 
+        // Configure db to use local sqlite file in root
         protected override void OnConfiguring(DbContextOptionsBuilder opts)
             => opts.UseSqlite("Data Source=vendor.db");
     }
