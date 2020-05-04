@@ -104,6 +104,7 @@ namespace CodingChallengeWeek3.ConsoleInterface
         return;
       }
 
+      // Format data and print to console
       List<string> multiTableList = Utils.Logic.MultiTable(num);
 
       Console.WriteLine(String.Join(" ", multiTableList));

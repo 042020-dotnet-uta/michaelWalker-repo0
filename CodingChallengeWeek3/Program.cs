@@ -8,6 +8,7 @@ namespace CodingChallengeWeek3
     {
         static void Main(string[] args)
         {
+            // Let's go
             MainMenu.Show();
         }
     }
