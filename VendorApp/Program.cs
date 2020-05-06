@@ -2,11 +2,13 @@
 
 namespace VendorApp
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+      VendorApp vApp = new VendorApp();
+
+      vApp.Start();
     }
+  }
 }
