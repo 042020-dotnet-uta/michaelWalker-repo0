@@ -25,8 +25,11 @@ namespace VendorApp.DataAccess
 
     // * Handling data
 
-    // Create a Product
-    // TODO: Add docs
+    /// <summary>
+    /// Add a new product to the database
+    /// </summary>
+    /// <param name="name">Product's name</param>
+    /// <param name="catagory">Product's catagory</param>
     public void Create(string name, string catagory)
     {
       Product p = new Product { Name = name, CatagoryType = catagory };
@@ -37,8 +40,11 @@ namespace VendorApp.DataAccess
 
 
 
-    // Find Product
-    // TODO: add docs
+    /// <summary>
+    /// Retrieve Product from the DB by it's unique ID
+    /// </summary>
+    /// <param name="id">Product's ID</param>
+    /// <returns>The produdct entity with the matching id</returns>
     public Product FindById(int id)
     {
       // TODO: AddIn

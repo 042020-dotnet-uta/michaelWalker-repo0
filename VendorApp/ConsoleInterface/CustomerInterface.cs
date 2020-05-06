@@ -134,7 +134,7 @@ Customer Menu - Please make a selection:
       {
         Console.WriteLine("Please enter a Customer's username to fetch their details.");
         usernameInput = Console.ReadLine();
-        var response = customerLogic.GetCustomerDetailsByName(usernameInput);
+        var response = customerLogic.GetCustomerDetailsByNamePacket(usernameInput);
 
         if (response.Status == PacketStatus.Invalid)
         {

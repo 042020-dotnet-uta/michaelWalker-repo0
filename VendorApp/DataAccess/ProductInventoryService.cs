@@ -38,7 +38,7 @@ namespace VendorApp.DataAccess
         Quanitity = quantity,
       };
 
-      ctx.ProductInventories.Add(pI);
+      ctx.LocationInventory.Add(pI);
       ctx.SaveChanges();
     }
 
@@ -51,7 +51,7 @@ namespace VendorApp.DataAccess
     /// it's related to.</returns>
     public ProductInventory GetInventory(Location location, Product product)
     {
-      return ctx.ProductInventories.AsNoTracking().Include(pI => pI.ProductLocation).Include(pI => pI.Product)
+      return ctx.LocationInventory.AsNoTracking().Include(pI => pI.ProductLocation).Include(pI => pI.Product)
           .FirstOrDefault(pI => pI.ProductLocation.LocationId == location.LocationId && pI.Product.ProductId == product.ProductId);
     }
 
@@ -61,7 +61,7 @@ namespace VendorApp.DataAccess
     /// <param name="locationName">Name used to fileter query results</param>
     /// <returns>List of Location's inventory</returns>
     public List<ProductInventory> FindProductInventoryByLocationName(string locationName) => 
-        ctx.ProductInventories.AsNoTracking().Include(pI => pI.ProductLocation).Include(pI => pI.Product)
+        ctx.LocationInventory.AsNoTracking().Include(pI => pI.ProductLocation).Include(pI => pI.Product)
         .Where(pI => pI.ProductLocation.Name == locationName).ToList();
 
     /// <summary>
@@ -72,7 +72,7 @@ namespace VendorApp.DataAccess
     /// <returns>An instance of ProductInventory with the resulting changes after the update.</returns>
     public ProductInventory UpdateInventory(Location location, Product product, int quantity)
     {
-      ProductInventory productInventory = ctx.ProductInventories.Include(pI => pI.ProductLocation).Include(pI => pI.Product)
+      ProductInventory productInventory = ctx.LocationInventory.Include(pI => pI.ProductLocation).Include(pI => pI.Product)
           .FirstOrDefault(pI => pI.ProductLocation.LocationId == location.LocationId && pI.Product.ProductId == product.ProductId);
       productInventory.Quanitity = quantity;
       ctx.SaveChanges();
@@ -96,7 +96,7 @@ namespace VendorApp.DataAccess
     /// <returns>The Product that belongs to the Location's Inventory</returns>
     public ProductInventory FindByLocationId(int locationId)
     {
-      return ctx.ProductInventories.Where(pI => locationId == pI.ProductLocation.LocationId).First();
+      return ctx.LocationInventory.Where(pI => locationId == pI.ProductLocation.LocationId).First();
     }
   }
 }

@@ -10,25 +10,44 @@ namespace VendorApp.Model
   /// </summary>
   public class Order
   {
-    // TODO add docs
+    /// <summary>
+    /// The order's unique ID
+    /// </summary>
+    /// <value></value>
     public int OrderId { get; set; }
-    // TODO add docs
+    /// <summary>
+    /// The customer that made the order
+    /// </summary>
+    /// <value></value>
     [Required]
     public Customer Customer { get; set; }
-    // TODO add docs
+    /// <summary>
+    /// The product the customer purchased in the order
+    /// </summary>
+    /// <value></value>
     [Required]
     public string ProductName { get; set; }
-    // TODO add docs
+    /// <summary>
+    /// The location the customer made the order from
+    /// </summary>
+    /// <value></value>
     [Required]
     public string LocationName { get; set; }
 
-    // TODO add docs
+    /// <summary>
+    /// The amount of the product purchased by the customer
+    /// </summary>
+    /// <value></value>
     [Required]
     public int QuantitySold { get; set; }
 
-    // TODO add docs
-    // Assign get date within DBContext OnModelCreating
+    ///
+    /// <summary>
+    /// The timestamp when the purchase was made
+    /// </summary>
+    /// <value></value>
     [Required]
+    // Assign get date within DBContext OnModelCreating
     public DateTime CreatedDate { get; set; }
 
     public Order()

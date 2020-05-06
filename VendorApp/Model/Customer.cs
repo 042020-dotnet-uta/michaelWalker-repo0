@@ -10,17 +10,29 @@ namespace VendorApp.Model
   /// </summary>
   public class Customer
   {
-    // TODO: add docs
+    /// <summary>
+    /// Customer's unique ID
+    /// </summary>
+    /// <value></value>
     public int CustomerId { get; set; }
-    // TODO: add docs
+    /// <summary>
+    /// Customer's registered username
+    /// </summary>
+    /// <value></value>
     [Required]
     [MaxLength(50)]
     public string Username { get; set; }
-    // TODO: add docs
+    /// <summary>
+    /// Customer's registered email
+    /// </summary>
+    /// <value></value>
     [Required]
     [MaxLength(50)]
     public string Email { get; set; }
-    // TODO: add docs
+    /// <summary>
+    /// A list of the customer's order history
+    /// </summary>
+    /// <value></value>
     public ICollection<Order> OrderHistory { get; set; }
   }
 }

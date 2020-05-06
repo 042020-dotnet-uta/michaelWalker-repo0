@@ -5,11 +5,12 @@ using VendorApp.Model;
 
 namespace VendorApp.BusinessLogic
 {
-  // TODO add docs
+  /// <summary>
+  /// The customer logic class retrieves and handles data before displaying it 
+  /// to the interface
+  /// </summary>
   public class CustomerLogic
   {
-    // TODO implement the following
-    // get, add, update, set customer
 
     /// <summary>
     /// Retrieves Customer from the DB with a specified first name
@@ -112,8 +113,12 @@ namespace VendorApp.BusinessLogic
       return packet;
     }
 
-    // TODO: add docs
-    public Packet<Customer> GetCustomerDetailsByName(string username)
+    /// <summary>
+    /// Retreives the details for a specified customer
+    /// </summary>
+    /// <param name="username">The customers name</param>
+    /// <returns>A packet to send to the console to display the data</returns>
+    public Packet<Customer> GetCustomerDetailsByNamePacket(string username)
     {
       Customer customer;
       Packet<Customer> msg = new Packet<Customer> { Text = "", Status = PacketStatus.NULL };
@@ -138,7 +143,11 @@ namespace VendorApp.BusinessLogic
       return msg;
     }
 
-    // TODO: add docs
+    /// <summary>
+    /// Makes a list of orders made by the specified customer
+    /// </summary>
+    /// <param name="username">The Customer's username</param>
+    /// <returns></returns>
     public Packet GetCustomerOrdersByUserNamePacket(string username)
     {
       Packet message = new Packet();
@@ -268,13 +277,5 @@ namespace VendorApp.BusinessLogic
         Status = PacketStatus.Pass
       };
     }
-
-    // TODO Remove Customer
-
-    // TODO Update Customer's Name
-
-    // TODO Have customer make a purchase
-
-    // TODO Write method for validating names
   }
 }

@@ -42,9 +42,9 @@ namespace VendorApp.DataAccess
 
     // TODO: finish documenting
     /// <summary>
-    /// 
+    /// Retrieve order by ID
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="id">The order's unique id</param>
     /// <returns>The order based on ID or null if no order was found</returns>
     public Order FindById(int id)
     {
@@ -79,13 +79,21 @@ namespace VendorApp.DataAccess
     }
 
 
-    public void RemoveByOrder(Order c)
+    /// <summary>
+    /// Removes a order from the DB by using a reference the specified 
+    /// Customer retrieved from the DBContext
+    /// </summary>
+    /// <param name="o">The order entity</param>
+    public void RemoveByOrder(Order o)
     {
-      ctx.Orders.Remove(c);
+      ctx.Orders.Remove(o);
       ctx.SaveChanges();
     }
 
-    // TODO: start docs
+    /// <summary>
+    /// Remove's an order with a specified id
+    /// </summary>
+    /// <param name="username">Order's ID</param>
     public void RemoveById(int id)
     {
       RemoveByOrder(FindById(id));

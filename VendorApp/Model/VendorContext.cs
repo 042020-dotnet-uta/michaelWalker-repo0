@@ -8,11 +8,32 @@ namespace VendorApp.Model
   public class VendorContext : DbContext
   {
 
+    
+    /// <summary>
+    /// The Customer's DB set.  Used to retrieve and manipulate data from the 
+    /// DB relative to the Customer model.
+    /// </summary>
     public DbSet<Customer> Customers { get; set; }
+    /// <summary>
+    /// The Locatiion's DB set.  Used to retrieve and manipulate data from the 
+    /// DB relative to the Locatiion model.
+    /// </summary>
     public DbSet<Location> Locations { get; set; }
+    /// <summary>
+    /// The Product's DB set.  Used to retrieve and manipulate data from the 
+    /// DB relative to the Product model.
+    /// </summary>
     public DbSet<Product> Products { get; set; }
+    /// <summary>
+    /// The Order's DB set.  Used to retrieve and manipulate data from the 
+    /// DB relative to the Order model.
+    /// </summary>
     public DbSet<Order> Orders { get; set; }
-    public DbSet<ProductInventory> ProductInventories { get; set; }
+    /// <summary>
+    /// The LocationInventory's DB set.  Used to retrieve and manipulate data from the 
+    /// DB relative to the LocationInventory model.
+    /// </summary>
+    public DbSet<ProductInventory> LocationInventory { get; set; }
 
     public VendorContext()
     {
@@ -45,27 +66,6 @@ namespace VendorApp.Model
       modelBuilder.Entity<Location>()
                     .HasMany(l => l.ProductInventoryRecords)
                     .WithOne(pI => pI.ProductLocation);
-
-      // * Product
-
-      // * ProductInventory
-
-      // * Order
-
-
-
-      
-
-      
-
-      // modelBuilder.Entity<ProductInventory>(ent =>
-      // {
-      //   // Many ProductInventory belong to one Location
-      //   ent.HasOne(pI => pI.ProductLocation).WithMany(l => l.ProductInventoryRecords);
-
-      //   // ProductInventory is aware of their assigned Product
-      //   ent.HasOne(pI => pI.Product);
-      // });
     }
   }
 }

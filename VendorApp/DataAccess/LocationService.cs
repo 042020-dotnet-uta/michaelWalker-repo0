@@ -21,8 +21,6 @@ namespace VendorApp.DataAccess
       this.ctx = ctx;
     }
 
-    // * Handling data
-
     // Create a location
     /// <summary>
     /// Create a new location with a provided name.
@@ -44,10 +42,10 @@ namespace VendorApp.DataAccess
     {
       Location loc = ctx.Locations.FirstOrDefault(l => l.LocationId == id);
       // Remove InventoryRecords from this Location
-      List<ProductInventory> inventoryRecords = ctx.ProductInventories.Where(pI => pI.ProductLocation.LocationId == loc.LocationId).ToList();
+      List<ProductInventory> inventoryRecords = ctx.LocationInventory.Where(pI => pI.ProductLocation.LocationId == loc.LocationId).ToList();
       foreach (var record in inventoryRecords)
       {
-        ctx.ProductInventories.Remove(record);
+        ctx.LocationInventory.Remove(record);
       }
 
       //Remove Location
@@ -63,10 +61,10 @@ namespace VendorApp.DataAccess
     {
       Location loc = ctx.Locations.FirstOrDefault(l => l.Name == name);
       // Remove InventoryRecords from this Location
-      List<ProductInventory> inventoryRecords = ctx.ProductInventories.Where(pI => pI.ProductLocation.Name == loc.Name).ToList();
+      List<ProductInventory> inventoryRecords = ctx.LocationInventory.Where(pI => pI.ProductLocation.Name == loc.Name).ToList();
       foreach (var record in inventoryRecords)
       {
-        ctx.ProductInventories.Remove(record);
+        ctx.LocationInventory.Remove(record);
       }
 
       //Remove Location
@@ -79,22 +77,7 @@ namespace VendorApp.DataAccess
     {
       // Fetch ALL locations
       List<Location> locations = ctx.Locations.ToList();
-      // Remove InventoryRecords from this Location
-      // foreach (var loc in locations)
-      // {
-        // List<ProductInventory> inventoryRecords = ctx.ProductInventories.Where(pI => pI.ProductLocation.LocationId == loc.LocationId).ToList();
-        // foreach (var record in inventoryRecords)
-        // {
-        //   ctx.ProductInventories.Remove(record);
-        // }
-
-        // ctx.Locations.Remove(loc);
-        
-      // }
-
       ctx.Locations.RemoveRange(locations);
-
-
       //Remove Location
 
       ctx.SaveChanges();
