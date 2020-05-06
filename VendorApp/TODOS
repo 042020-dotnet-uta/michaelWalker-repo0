@@ -1,0 +1,5 @@
+TODO: Add Order model
+TODO: Make OrderHistory for Customer (Customer to Orders relation)
+
+TODO: Create ConsoleInterface
+TODO: Create ValidationHelper
