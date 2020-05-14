@@ -22,15 +22,15 @@ stages:
     jobs: 
       - job: 'build'
         steps:
-          - script: 'dotnet build'
+          - script: 'dotnet build VendorApp/VendorApp.csproj'
           - script: echo "oh hey $(person)"
       - job: 'test'
         dependsOn: 'build'
         steps:
-          - script: 'dotnet test'
+          - script: 'dotnet test VendorApp/VendorApp.csproj'
       - job: 'publish'
         dependsOn: 'test'
         steps:
-          - script: 'dotnet publish'
+          - script: 'dotnet publish VendorApp/VendorApp.csproj'
 
 name: '$(date:yyyMMdd)$(rev:r)'
